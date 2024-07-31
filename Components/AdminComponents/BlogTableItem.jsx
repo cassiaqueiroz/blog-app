@@ -23,4 +23,4 @@ const BlogTableItem = ({authorImg,title,author,date,deleteBlog,mongoId}) => {
   )
 }
 
-export default BlogTableItem
+export default BlogTableItem;

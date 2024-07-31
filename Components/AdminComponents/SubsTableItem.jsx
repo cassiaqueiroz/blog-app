@@ -15,4 +15,4 @@ const SubsTableItem = ({email,mongoId,deleteEmail,date}) => {
   )
 }
 
-export default SubsTableItem
+export default SubsTableItem;

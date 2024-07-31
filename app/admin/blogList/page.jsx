@@ -4,28 +4,38 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { toast } from 'react-toastify';
 
-const page = () => {
+const Page = () => {
 
   const [blogs,setBlogs] = useState([]);
 
   const fetchBlogs = async () => {
-    const response = await axios.get('/api/blog');
-    setBlogs(response.data.blogs);
+    try {
+      const response = await axios.get('/api/blog');
+      setBlogs(response.data.blogs);
+    } catch (error) {
+      console.error("Error fetching blogs:", error);
+      // Handle error (e.g., set an error state, show a message, etc.)
+    }
   }
 
   const deleteBlog = async (mongoId) => {
-    const response = await axios.delete('/api/blog',{
-      params:{
-        id:mongoId
-      }
-    })
-    toast.success(response.data.msg);
-    fetchBlogs();
+    try {
+      const response = await axios.delete('/api/blog', {
+        params: { id: mongoId }
+      });
+      toast.success(response.data.msg);
+      fetchBlogs();
+    } catch (error) {
+      console.error("Error deleting blog:", error);
+      toast.error("Error deleting blog");
+      // Handle error (e.g., show a message, etc.)
+    }
   }
 
-  useEffect(()=>{
-    fetchBlogs()
-  },[])
+  useEffect(() => {
+    fetchBlogs();
+  }, []);
+
 
   return (
     <div className='flex-1 pt-5 px-5 sm:pt-12 sm:pl-16'>
@@ -59,4 +69,4 @@ const page = () => {
   )
 }
 
-export default page
+export default Page;

@@ -22,4 +22,4 @@ const BlogItem = ({title,description,category,image,id}) => {
   )
 }
 
-export default BlogItem
+export default BlogItem;
